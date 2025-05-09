@@ -148,7 +148,13 @@ HEAD_SIZE = 64
 NUM_QUERY_HEADS = [32]
 NUM_KEY_HEADS = [1]
 SEQ_CONFIG = [
-    (1, 4103),     # (seq_len, cache_size)
+    (1, 4103),
+    (4, 4103),
+    (16, 4103),
+    (64, 4103),
+    (256, 4103),
+    (512, 4103),
+    (1024, 4103),     # (seq_len, cache_size)
     (4091, 4096),
     (8192, 4116),
 ]
@@ -185,7 +191,7 @@ def test_rotary_embedding(
     rope = RotaryEmbedding(
         head_size=head_size,
         rotary_dim=head_size,
-        max_position_embeddings=cache_size,  # 使用指定的cache_size
+        max_position_embeddings=cache_size,
         base=base,
         is_neox_style=is_neox_style,
         dtype=dtype
